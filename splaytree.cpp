@@ -125,7 +125,7 @@ Node* Splay(std::string key, Node* root) {
                 if (root->left == NULL){
                     return root;
                 }
-                //Left-left (Zag-zag)
+                //Left-left (Zig-zig)
                 //key to the left of the root is greater than key being searched
                 if (root->left->key > key) {
                     //two nodes under root to the left becomes the new root
@@ -133,7 +133,7 @@ Node* Splay(std::string key, Node* root) {
                     //root is the zag-zag rotated tree. (if the grandparent of key is the root, base case is met and tree is done)
                     root = rotateRight(root);
                 }
-            //Left-right (Zag-zig)
+            //Left-right (Zig-zag)
             //key to left of root is less than key being searched, key resides to the right
             else if (root->left->key < key) {
                 //key to the left, then right of root node becomes new root
@@ -158,7 +158,7 @@ Node* Splay(std::string key, Node* root) {
             if (root-> right == NULL){
                 return root;
             }
-            //Right-Right (Zig-Zig)
+            //Right-Right (Zag-Zag)
             //key of node to the right of root is less than key being searched
             if (root->right->key < key) {
                 //node to the right to the right of the root becomes new root
@@ -166,7 +166,7 @@ Node* Splay(std::string key, Node* root) {
                 //root becomes the left rotated tree
                 root = rotateLeft(root)
             }
-            //Right-Left (Zig-Zag)
+            //Right-Left (Zag-Zig)
             else if (root->right->key > key){
                 //node to the left of the right of the root becomes new root
                 root->right->left = splay(root->right->left, key);
@@ -179,7 +179,7 @@ Node* Splay(std::string key, Node* root) {
                 return root;
                 //do a left rotation
             }else {
-                return rotateLeft(root);
+                return rotate(root);
             }
     }
 }
